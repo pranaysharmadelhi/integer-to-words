@@ -38,6 +38,16 @@ public class LanguageTest {
     public void givenInteger_whenGetWords_thenReturnsWords()
             throws Exception {
 
+        mockMvc.perform(get("/api/integertoword/5001"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.wordInEnglish").value("Five thousand and one"))
+                .andReturn();
+
+        mockMvc.perform(get("/api/integertoword/5020"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.wordInEnglish").value("Five thousand and twenty"))
+                .andReturn();
+
         mockMvc.perform(get("/api/integertoword/2147483647"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.wordInEnglish").value("Two billion one hundred and forty seven million four hundred and eighty three thousand six hundred and forty seven"))

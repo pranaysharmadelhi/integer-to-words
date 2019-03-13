@@ -58,7 +58,7 @@ public class LanguageService {
             logger.debug("Loop over all scales to generate full word in english");
             for (Scales scale : scales) {
                 logger.debug("Get word for scale that starts at digit: " + scale.getNoOfZerosStart() + " with maxLength: " + scale.getMaxLength() + " called " + scale.getWordInEnglish());
-                String nextWords = getWordForScale(scale, getNumberForScale(scale, number), tensList, smallNumbersList);
+                String nextWords = getWordForScale(scale, getNumberForScale(scale, number), tensList, smallNumbersList, !word.trim().isEmpty());
                 if (!nextWords.trim().isEmpty()) {
 //                    if (!word.trim().isEmpty()) {
 //                        logger.debug("Adding comma");
@@ -83,7 +83,7 @@ public class LanguageService {
         return word;
     }
 
-    public String getWordForScale(Scales scales, Integer number, List<Tens> tensList, List<SmallNumbers> smallNumbersList) {
+    public String getWordForScale(Scales scales, Integer number, List<Tens> tensList, List<SmallNumbers> smallNumbersList, Boolean prefixExists) {
         String word = "";
         logger.debug("Split number according to scales in tens/hundreds depending on number system");
 
@@ -104,7 +104,7 @@ public class LanguageService {
             }
         }
         if (tens > 0) {
-            if (!word.trim().isEmpty()) {
+            if (!word.trim().isEmpty() || prefixExists) {
                 logger.debug("Tens word is present, add word 'and'");
                 word += andWord + " ";
             }
@@ -116,7 +116,7 @@ public class LanguageService {
                     + " ";
         }
         if (small > 0) {
-            if (!word.trim().isEmpty() && tens == 0) {
+            if ((!word.trim().isEmpty() || prefixExists) && tens == 0) {
                 logger.debug("Tens word was not present, add word 'and'");
                 word += andWord + " ";
             }

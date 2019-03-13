@@ -247,6 +247,23 @@ public class LanguageServiceTest {
 
     }
 
+    @Test
+    public void testGetWordForScaleHundreds() throws Exception {
+
+        Scales scale = new Scales();
+        scale.setId(1);
+        scale.setNoOfZerosStart(0);
+        scale.setMaxLength(3);
+        scale.setNumberingSystemId(1);
+        scale.setWordInEnglish("");
+
+        assertThat(service.getWordForScale(scale, 0, tensList, smallNumbersList, false).trim()).isEqualTo("");
+
+        assertThat(service.getWordForScale(scale, 1, tensList, smallNumbersList, false).trim()).isEqualTo("one");
+
+        assertThat(service.getWordForScale(scale, 1, tensList, smallNumbersList, true).trim()).isEqualTo("and one");
+
+    }
 
     @Test
     public void testGetWordForScaleThousands() throws Exception {
@@ -258,17 +275,17 @@ public class LanguageServiceTest {
         scale.setNumberingSystemId(1);
         scale.setWordInEnglish("thousand");
 
-        assertThat(service.getWordForScale(scale, 0, tensList, smallNumbersList).trim()).isEqualTo("");
+        assertThat(service.getWordForScale(scale, 0, tensList, smallNumbersList, false).trim()).isEqualTo("");
 
-        assertThat(service.getWordForScale(scale, 1, tensList, smallNumbersList).trim()).isEqualTo("one thousand");
+        assertThat(service.getWordForScale(scale, 1, tensList, smallNumbersList, false).trim()).isEqualTo("one thousand");
 
-        assertThat(service.getWordForScale(scale, 10, tensList, smallNumbersList).trim()).isEqualTo("ten thousand");
+        assertThat(service.getWordForScale(scale, 10, tensList, smallNumbersList, false).trim()).isEqualTo("ten thousand");
 
-        assertThat(service.getWordForScale(scale, 12, tensList, smallNumbersList).trim()).isEqualTo("twelve thousand");
+        assertThat(service.getWordForScale(scale, 12, tensList, smallNumbersList, false).trim()).isEqualTo("twelve thousand");
 
-        assertThat(service.getWordForScale(scale, 120, tensList, smallNumbersList).trim()).isEqualTo("one hundred and twenty thousand");
+        assertThat(service.getWordForScale(scale, 120, tensList, smallNumbersList, false).trim()).isEqualTo("one hundred and twenty thousand");
 
-        assertThat(service.getWordForScale(scale, 123, tensList, smallNumbersList).trim()).isEqualTo("one hundred and twenty three thousand");
+        assertThat(service.getWordForScale(scale, 123, tensList, smallNumbersList, false).trim()).isEqualTo("one hundred and twenty three thousand");
 
     }
 
@@ -283,17 +300,17 @@ public class LanguageServiceTest {
         scale.setNumberingSystemId(1);
         scale.setWordInEnglish("million");
 
-        assertThat(service.getWordForScale(scale, 0, tensList, smallNumbersList).trim()).isEqualTo("");
+        assertThat(service.getWordForScale(scale, 0, tensList, smallNumbersList, false).trim()).isEqualTo("");
 
-        assertThat(service.getWordForScale(scale, 1, tensList, smallNumbersList).trim()).isEqualTo("one million");
+        assertThat(service.getWordForScale(scale, 1, tensList, smallNumbersList, false).trim()).isEqualTo("one million");
 
-        assertThat(service.getWordForScale(scale, 10, tensList, smallNumbersList).trim()).isEqualTo("ten million");
+        assertThat(service.getWordForScale(scale, 10, tensList, smallNumbersList, false).trim()).isEqualTo("ten million");
 
-        assertThat(service.getWordForScale(scale, 12, tensList, smallNumbersList).trim()).isEqualTo("twelve million");
+        assertThat(service.getWordForScale(scale, 12, tensList, smallNumbersList, false).trim()).isEqualTo("twelve million");
 
-        assertThat(service.getWordForScale(scale, 120, tensList, smallNumbersList).trim()).isEqualTo("one hundred and twenty million");
+        assertThat(service.getWordForScale(scale, 120, tensList, smallNumbersList, false).trim()).isEqualTo("one hundred and twenty million");
 
-        assertThat(service.getWordForScale(scale, 123, tensList, smallNumbersList).trim()).isEqualTo("one hundred and twenty three million");
+        assertThat(service.getWordForScale(scale, 123, tensList, smallNumbersList, false).trim()).isEqualTo("one hundred and twenty three million");
 
     }
 
@@ -310,17 +327,17 @@ public class LanguageServiceTest {
         scale.setNumberingSystemId(1);
         scale.setWordInEnglish("billion");
 
-        assertThat(service.getWordForScale(scale, 0, tensList, smallNumbersList).trim()).isEqualTo("");
+        assertThat(service.getWordForScale(scale, 0, tensList, smallNumbersList, false).trim()).isEqualTo("");
 
-        assertThat(service.getWordForScale(scale, 1, tensList, smallNumbersList).trim()).isEqualTo("one billion");
+        assertThat(service.getWordForScale(scale, 1, tensList, smallNumbersList, false).trim()).isEqualTo("one billion");
 
-        assertThat(service.getWordForScale(scale, 10, tensList, smallNumbersList).trim()).isEqualTo("ten billion");
+        assertThat(service.getWordForScale(scale, 10, tensList, smallNumbersList, false).trim()).isEqualTo("ten billion");
 
-        assertThat(service.getWordForScale(scale, 12, tensList, smallNumbersList).trim()).isEqualTo("twelve billion");
+        assertThat(service.getWordForScale(scale, 12, tensList, smallNumbersList, false).trim()).isEqualTo("twelve billion");
 
-        assertThat(service.getWordForScale(scale, 120, tensList, smallNumbersList).trim()).isEqualTo("one hundred and twenty billion");
+        assertThat(service.getWordForScale(scale, 120, tensList, smallNumbersList, false).trim()).isEqualTo("one hundred and twenty billion");
 
-        assertThat(service.getWordForScale(scale, 123, tensList, smallNumbersList).trim()).isEqualTo("one hundred and twenty three billion");
+        assertThat(service.getWordForScale(scale, 123, tensList, smallNumbersList, false).trim()).isEqualTo("one hundred and twenty three billion");
 
     }
 
