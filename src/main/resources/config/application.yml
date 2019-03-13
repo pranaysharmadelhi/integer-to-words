@@ -1,0 +1,6 @@
+spring:
+  flyway:
+    enabled: true
+logging:
+  level:
+    com.sonatype.assignment.integertowords: DEBUG
